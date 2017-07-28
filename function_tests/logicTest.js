@@ -1,11 +1,40 @@
 const word = "aabcdef"
 const allowedGuesses = 8
-const currentGuesses = 0
-const currentLetter = ["b","a"]
+let currentGuesses = 7
+let currentLetter = ["b","a","d","e","f"]
+let letterGuess = "f"
 
-console.log(checkLetters(word,currentLetter))
+console.log(gameContinue(gamelogic(letterGuess)))
 
 
+function gamelogic(letterGuess){
+    let result = {}
+    if(duplicateGuess(letterGuess)){
+        console.log("Duplicate guess!: " + letterGuess)
+    }
+    else {
+        currentLetter.push(letterGuess)
+        result = checkLetters(word,currentLetter,currentGuesses)
+    }
+    if(result.guessSuccess){
+        result.guessCount = currentGuesses
+        return result
+    } else {
+        currentGuesses += 1
+        result.guessCount = currentGuesses
+        return result
+    }
+}
+function gameContinue(result){
+    if(result.displayWord.indexOf("_") > -1 && result.guessCount < allowedGuesses){
+        console.log("Game continues!")
+    }else if (result.displayWord.indexOf("_") > -1){
+        console.log("You're out of guesses and did not guess the word.")
+    }else {
+        console.log("You've won!")
+    }
+    return result
+}
 function duplicateGuess(letter){
     let duplicate = false;
     if(currentLetter.findIndex(function(item){return item == letter})> -1 ){
@@ -31,5 +60,6 @@ function checkLetters(word,currentLetter,currentGuesses) {
     })
     return {displayWord: wordResult,
             guessSuccess: success,
-            lastGuess: currentLetter[currentLetter.length-1]}
+            lastGuess: currentLetter[currentLetter.length-1],
+            lettersGuessed: currentLetter}
 }
