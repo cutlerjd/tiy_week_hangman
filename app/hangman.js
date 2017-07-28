@@ -25,11 +25,13 @@ function executePlay(sess) {
     else {
         //initialize game play
         sess.currentGame = true
-        sess.currentWord = words[100]
+        sess.wordLength = 8
+        sess.currentWord = generateWord(sess.wordLength)
         sess.displayWord = sess.currentWord.replace(/./g,"_")
         sess.lettersGuessed = []
         sess.numberGuesses = 0
         sess.guessesAllowed = 8
+        sess.guessesRemaining = sess.guessesAllowed
         sess.guess = ""
         return sess
     }
@@ -80,6 +82,7 @@ function updateGameState(sess) {
     }
     if (!sess.guessSuccess && !sess.duplicateGuess) {
         sess.numberGuesses += 1
+        sess.guessesRemaining -= 1
     }
     if (sess.numberGuesses == sess.guessesAllowed) {
         sess.currentGame = false;
@@ -88,7 +91,15 @@ function updateGameState(sess) {
         return sess;
     }
 }
-
+function generateWord(length){
+    let word = "a"
+    do {
+        word = words[Math.floor(Math.random() * words.length)]
+        console.log(word)
+        console.log(word.length)
+    }while (word.length >= length)
+    return word
+}
 module.exports = executePlay
 
 //Test code below
