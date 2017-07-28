@@ -14,14 +14,6 @@ Fields to make
 const fs = require('fs');
 const words = fs.readFileSync("/usr/share/dict/words", "utf-8").toLowerCase().split("\n");
 
-let session = {}
-session = executePlay(session)
-console.log(session)
-session.guess = "a"
-session = executePlay(session)
-console.log(session)
-
-
 function executePlay(sess) {
     if (sess.currentGame) {
         //Insert game play logic here
@@ -34,7 +26,7 @@ function executePlay(sess) {
         //initialize game play
         sess.currentGame = true
         sess.currentWord = words[100]
-        sess.displayWord = 0 /*code here */
+        sess.displayWord = sess.currentWord.replace(/./g,"_")
         sess.lettersGuessed = []
         sess.numberGuesses = 0
         sess.guessesAllowed = 8
@@ -47,7 +39,7 @@ function checkDuplicateGuess(sess) {
     let duplicate = false;
     if (sess.lettersGuessed.findIndex(function (item) {
         return item == sess.guess
-    })>-1) {
+    }) > -1) {
         duplicate = true;
         sess.duplicateGuess = duplicate
         return sess
@@ -57,40 +49,85 @@ function checkDuplicateGuess(sess) {
     return sess
 }
 
-function checkLetters(sess){
+function checkLetters(sess) {
     let success = false;
     let solved = true
     let wordArray = sess.currentWord.split("")
-    wordArray = wordArray.map(function(letter){
-        if(sess.lettersGuessed.findIndex(function(item){return item == letter})> -1 ){
-            if(sess.lettersGuessed[sess.lettersGuessed.length -1] == letter){
+    wordArray = wordArray.map(function (letter) {
+        if (sess.lettersGuessed.findIndex(function (item) { return item == letter }) > -1) {
+            if (sess.lettersGuessed[sess.lettersGuessed.length - 1] == letter) {
                 success = true
             }
             return letter = letter;
-        }else {
+        } else {
             solved = false
             return letter = "_"
         }
     })
-    sess.displayWord = wordArray.reduce(function(a,b){
+    sess.displayWord = wordArray.reduce(function (a, b) {
         return a + b
     })
     sess.guessSuccess = success;
     sess.wordSolved = solved
     return sess
 }
-function updateGameState(sess){
-    if(sess.wordSolved){
+function updateGameState(sess) {
+    if (sess.wordSolved) {
         sess.currentGame = false;
         return sess
-    } else if(sess.guessSucess){
+    } else if (sess.guessSucess) {
         return sess
     }
-    sess.numberGuesses += 1
-    if(sess.numberGuesses == sess.guessesAllowed){
+    if (!sess.guessSuccess && !sess.duplicateGuess) {
+        sess.numberGuesses += 1
+    }
+    if (sess.numberGuesses == sess.guessesAllowed) {
         sess.currentGame = false;
         return sess;
-    } else{
+    } else {
         return sess;
     }
 }
+
+module.export = executePlay
+
+//Test code below
+let session = {}
+session = executePlay(session)
+console.log(session)
+session.guess = "a"
+session = executePlay(session)
+console.log(session)
+// session.guess = "a"
+// session = executePlay(session)
+// console.log(session)
+// session.guess = "b"
+// session = executePlay(session)
+// console.log(session)
+// session.guess = "x"
+// session = executePlay(session)
+// console.log(session)
+// session.guess = "y"
+// session = executePlay(session)
+// console.log(session)
+// session.guess = "z"
+// session = executePlay(session)
+// console.log(session)
+// session.guess = "q"
+// session = executePlay(session)
+// console.log(session)
+// session.guess = "v"
+// session = executePlay(session)
+// console.log(session)
+// session.guess = "x"
+// session = executePlay(session)
+// console.log(session)
+// session.guess = "i"
+// session = executePlay(session)
+// console.log(session)
+// session.guess = "r"
+// session = executePlay(session)
+// console.log(session)
+// session.guess = "o"
+// session = executePlay(session)
+// console.log(session)
