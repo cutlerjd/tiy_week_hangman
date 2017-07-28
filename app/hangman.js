@@ -89,15 +89,15 @@ function updateGameState(sess) {
     }
 }
 
-module.export = executePlay
+module.exports = executePlay
 
 //Test code below
-let session = {}
-session = executePlay(session)
-console.log(session)
-session.guess = "a"
-session = executePlay(session)
-console.log(session)
+// let session = {}
+// session = executePlay(session)
+// console.log(session)
+// session.guess = "a"
+// session = executePlay(session)
+// console.log(session)
 // session.guess = "a"
 // session = executePlay(session)
 // console.log(session)

@@ -19,4 +19,4 @@ function gamePlay(){
     console.log(this.lettersGuessed)
 }
 
-module.exports = gameSession
+module.exports = gameSession()
