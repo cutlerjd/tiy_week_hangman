@@ -1,8 +1,8 @@
 const word = "aabcdef"
 const allowedGuesses = 8
-let currentGuesses = 7
-let currentLetter = ["b","a","d","e","f"]
-let letterGuess = "f"
+let currentGuesses = 0
+let currentLetter = ["b","a","d","e"]
+let letterGuess = "g"
 
 console.log(gameContinue(gamelogic(letterGuess)))
 
