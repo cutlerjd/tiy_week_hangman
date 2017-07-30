@@ -33,6 +33,8 @@ function executePlay(sess) {
         sess.guessesAllowed = 8
         sess.guessesRemaining = sess.guessesAllowed
         sess.guess = ""
+        sess.duplicateGuess = false;
+        sess.guessSuccess = true;
         return sess
     }
 }
