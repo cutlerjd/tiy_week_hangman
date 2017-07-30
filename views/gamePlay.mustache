@@ -1,23 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Word Guess!</title>
-  <link rel="stylesheet" href="/css/main.css" />
+    <meta charset="UTF-8">
+    <title>Word Guess!</title>
+    <link rel="stylesheet" href="/css/main.css" />
 </head>
+
 <body>
-  <h1>Guess the word!</h1>
-  <h1>{{displayWord}}!</h1>
-  <div>
-      Letters guessed: {{lettersGuessed}}
-      <br>
-      Guesses so far: {{numberGuesses}}
-      <br>
-      Guesses allowed: {{guessesAllowed}}
-  </div>
-      <form action="/taketurn" method="post">
-        <input type="text" name="guess">
-  <button type="submit">Guess</button>
-  </form>
+    <section class="wrapper">
+        <div class="header">
+            <div class="gameName">
+                <h1>Mystery Word Game</h1>
+                <h2>You have {{guessesRemaining}} gueses left</h2>
+            </div>
+        </div>
+        <div class="gamePlay">
+            <span>{{displayWord}}</span>
+        </div>
+        <div class="gameInput">
+          <form action="/taketurn" method="post">
+            <input class="input" type="text" name="guess" autofocus>
+            <button class="button" type="submit" name="submit"><span>Make a guess</span></button>
+            </form>
+        </div>
+        <div class="letters">
+            <p><b>Letters Guessed: </b><span>
+              {{#lettersGuessed}}
+              {{.}}, 
+              {{/lettersGuessed}}</span></p>
+        </div>
+        <div class="gameMessage">
+          {{#duplicateGuess}}
+          Duplicate guess!
+          {{/duplicateGuess}}
+          {{^guessSuccess}}
+          Letter not found!
+          {{/guessSuccess}}
+         </div>
+        <div class="footer">
+            <a href="/" alt="Home">Home</a>
+            <a href="/winners" alt="Winners page">Winners</a>
+            <a href="/settings" alt="Settings">Settings</a>
+        </div>
+    </section>
 </body>
+
 </html>

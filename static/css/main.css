@@ -1,11 +1,123 @@
-html {box-sizing:border-box;}
-*, *:before, *:after {box-sizing:inherit;}
-
+html {
+    box-sizing: border-box;
+}
+*::before, *::after, * {
+    box-sizing: inherit;
+}
 body {
-  margin:0;
-  padding:0;
+    background-color: lightblue;
+    margin: 0;
 }
 
-h1 {
-  color:blue;
+/*Layout and general styling  */
+.wrapper {
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+}
+.wrapper > div:first-child{
+    flex: 1 1 auto;
+}
+.gameName {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: lightgreen;
+}
+.gamePlay {
+    text-align: center;
+    font-size: 10vw;
+    text-transform: uppercase;
+    margin: 50px auto;
+    letter-spacing: 10px;
+}
+.gameInput {
+    margin-left: auto;
+    margin-right: auto;
+}
+.letters {
+    font-size: 2vw;
+}
+.letters > p > span {
+    text-transform: uppercase;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: blue;
+    margin:50px 0px 0px;
+    height: 40px;
+    padding: 10px;
+}
+
+
+.gameMessage {
+    height: 60px;
+    width: 300px;
+    padding: 30px 75px;
+    background-color: gray;
+    margin: 0px auto;
+    font-size: 1.5vw;
+}
+
+
+/*Making things prettier, little impact to layout  */
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 400px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.input {
+   display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: transparent;
+  text-shadow: 0px 0px 1px white;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px; 
+  text-transform: uppercase;
+}
+textarea:focus, input:focus{
+    outline: none;
+}
+*:focus {
+    outline: none;
 }
