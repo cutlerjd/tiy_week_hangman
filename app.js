@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const mustacheExpress = require('mustache-express');
-const executePlay = require('./app/hangman.js')
+const executePlay = require('./model/hangman.js')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 
@@ -21,7 +21,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get("/", function(req, res, next){
-  res.render("index", {appType:"Express"})
+  res.render("index")
 })
 
 app.post("/start", function(req,res, next){
