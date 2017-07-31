@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="/css/main.css" />
 </head>
 <body>
-  <h1>Hello, Welcome to {{appType}}!</h1>
-  <form action="/start" method="post">
-  <button type="submit">START</button>
-  </form>
+  <section class="wrapper">
+    <div class="header">
+      <div class="gameName">
+        <h1>Mystery Word Game</h1>
+        <h2> </h2>
+      </div>
+    </div>
+    <h1>Welcome to Mystery Word!</h1>
+    <form class="gameInput" action="/start" method="post">
+      <button class="button" type="submit">Start Game</button>
+    </form>
+    <div class="footer">
+      <a href="/" alt="Home">Home</a>
+      <a href="/winners" alt="Winners page">Winners</a>
+      <a href="/settings" alt="Settings">Settings</a>
+    </div>
+  </section>
 </body>
+
 </html>
