@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Word Guess!</title>
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+<body>
+    <section class="wrapper">
+        <div class="header">
+            <div class="gameName">
+                <h1>Mystery Word Game</h1>
+                <h2> </h2>
+            </div>
+        </div>
+        <div class="gamePlay">
+            <span>{{currentWord}}</span>
+        </div>
+        {{#wordSolved}}
+        <div class="gameWon">
+            <span>You Won!</span>
+        </div>
+        {{/wordSolved}}
+        {{^wordSolved}}
+        <div class="gameLost">
+            <span>You lost...</span>
+        </div>
+        {{/wordSolved}}
+        <div class="letters">
+            <p><b>Letters Guessed: </b><span>
+              {{#lettersGuessed}}
+              {{.}}, 
+              {{/lettersGuessed}}</span></p>
+        </div>
+        <div class="footer">
+            <a href="/" alt="Home">Home</a>
+            <a href="/winners" alt="Winners page">Winners</a>
+            <a href="/settings" alt="Settings">Settings</a>
+        </div>
+    </section>
+</body>
+
+</html>

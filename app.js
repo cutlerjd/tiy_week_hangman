@@ -32,10 +32,8 @@ app.post("/start", function(req,res, next){
 app.get("/game", function(req,res,next){
   if(req.session.currentGame){
     res.render("gamePlay",req.session)
-  } else if(req.session.wordSolved){
-    res.redirect("winner")
   } else {
-    res.redirect("loser")
+    res.render("results",req.session)
   }
 })
 app.post("/taketurn",function(req,res,next){
@@ -43,12 +41,7 @@ app.post("/taketurn",function(req,res,next){
   req.session = executePlay(req.session)
   res.redirect("/game")
 })
-app.get("/winner",function(req,res,next){
-  res.render("winnersPage",req.session)
-})
-app.get("/loser", function(req,res,next){
-  res.render("losersPage",req.session)
-})
+
 app.listen(3000, function(){
   console.log("App running on port 3000")
 })
