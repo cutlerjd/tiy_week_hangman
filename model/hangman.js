@@ -7,6 +7,7 @@ function executePlay(sess) {
         checkDuplicateGuess(sess)
         checkLetters(sess)
         updateGameState(sess)
+        setErrorMessage(sess)
         return sess
     }
     else {
@@ -22,6 +23,7 @@ function executePlay(sess) {
         sess.guess = ""
         sess.duplicateGuess = false;
         sess.guessSuccess = true;
+        sess.errorMessage = ""
         return sess
     }
 }
@@ -79,6 +81,17 @@ function updateGameState(sess) {
     } else {
         return sess;
     }
+}
+
+function setErrorMessage(sess){
+    if(sess.duplicateGuess){
+        sess.errorMessage = "Duplicate guess"
+    }else if(!sess.guessSuccess){
+        sess.errorMessage = "Letter not found"
+    } else {
+        sess.errorMessage = ""
+    }
+    return sess
 }
 function generateWord(length){
     let word = "a"

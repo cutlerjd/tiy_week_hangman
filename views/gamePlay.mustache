@@ -31,12 +31,9 @@
               {{/lettersGuessed}}</span></p>
         </div>
         <div class="gameMessage">
-          {{#duplicateGuess}}
-          Duplicate guess!
-          {{/duplicateGuess}}
-          {{^guessSuccess}}
-          Letter not found!
-          {{/guessSuccess}}
+          {{#errorMessage}}
+          {{.}}
+          {{/errorMessage}}
          </div>
         <div class="footer">
             <a href="/" alt="Home">Home</a>
